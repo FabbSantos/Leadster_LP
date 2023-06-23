@@ -1,9 +1,12 @@
+'use client'
 import Image from 'next/image'
 import styles from './page.module.css'
+import styled from 'styled-components'
 
 export default function Home() {
   return (
     <main className={styles.main}>
+      <Heading>alo</Heading>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
@@ -93,3 +96,9 @@ export default function Home() {
     </main>
   )
 }
+
+
+const Heading = styled.h2`
+  font-size: 4rem;
+  color: orange;
+`
