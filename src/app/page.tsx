@@ -1,17 +1,15 @@
 'use client'
-import Image from 'next/image'
-import styled from 'styled-components'
+import Hero from '@/components/Hero'
+import GlobalStyle from '@/globalStyles'
+
+
 
 export default function Home() {
   return (
-    <main>
-      <Heading>alo</Heading>
-    </main>
+  <>
+    <GlobalStyle/>
+    <Hero/>
+  </>
+
   )
 }
-
-
-const Heading = styled.h2`
-  font-size: 4rem;
-  color: orange;
-`
