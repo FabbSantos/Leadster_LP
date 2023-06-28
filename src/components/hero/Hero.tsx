@@ -40,12 +40,10 @@ const SectionHero = styled.section`
   background-color: #f0f8ff;
 
   text-align: center;
-
-  
 `
 
 const HeadingOne = styled.h1 ` 
-  color: #000;
+  color: #2c3e50;
   font-size: 3rem;
   font-weight: 500;
   

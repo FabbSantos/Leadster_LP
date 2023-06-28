@@ -15,7 +15,7 @@ const Svg = styled.svg.attrs({
   width: '1272',
   height: '1272',
 })`
-  fill: #F2F9FF;
+  fill: #e6f3ff;
   position: absolute;
   left: -10%;
   bottom: -100%;
