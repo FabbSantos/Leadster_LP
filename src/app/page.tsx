@@ -1,4 +1,5 @@
 'use client'
+import VideoList from '@/components/VideoList'
 import Demo from '@/components/demo/Demo'
 import Footer from '@/components/footer/Footer'
 import Hero from '@/components/hero/Hero'
@@ -11,6 +12,7 @@ export default function Home() {
   <>
     <GlobalStyle/>
     <Hero/>
+    <VideoList/>
     <Demo/>
     <Footer/>
   </>

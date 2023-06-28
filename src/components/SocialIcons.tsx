@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 
-export const LinkedIn = () => (
+export const LinkedIn:React.FC = () => (
     <Svg>
         <PathLinkedin />
     </Svg>
 );
 
-export const Facebook = () => (
+export const Facebook:React.FC = () => (
   <SvgFb>
     <PathFacebook />
   </SvgFb>
 );
-export const Instagram = () => (
+export const Instagram:React.FC = () => (
   <Svg>
     <PathInstagram />
   </Svg>
