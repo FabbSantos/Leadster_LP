@@ -208,15 +208,17 @@ const SectionVideos = styled.section`
     display: flex;
 
     margin: 0 auto;
-    flex-direction: row;
-  padding: 5%;
+    flex-direction: column;
+    padding: 5%;
     margin-bottom: 8rem;
     gap: 10px;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    
     @media (min-width:768px){
-    max-width: 70%;
-      padding: 6rem 2rem 2rem 2rem;
+         flex-direction: row;
+        max-width: 70%;
+        padding: 6rem 2rem 2rem 2rem;
     }
 `
 const TagContainer = styled.div`
@@ -285,14 +287,17 @@ const VideoOverlay = styled.div`
 `
 const VideoContainer = styled.div`
     position: relative;
-    flex-basis: calc(33.33% - 10px);
-    max-width: 30%;
+    // flex-basis: 1;
+    // max-width: 30%;
     margin-bottom: 15px;
     box-shadow: 0 10px 30px 0 rgba(12, 0, 46, .1);
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
     
+    @media (max-width:768px){
+     flex-basis: calc(33.33% - 10px);
+    }
     &:hover > ${VideoHeading} {
         color: #007dff;
     }
