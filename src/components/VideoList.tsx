@@ -296,7 +296,7 @@ const VideoContainer = styled.div`
     
     @media (min-width:768px){
         flex-basis: calc(33.33% - 10px);
-        max-width: 30%;
+        max-width: 26%;
     }
     &:hover > ${VideoHeading} {
         color: #007dff;
