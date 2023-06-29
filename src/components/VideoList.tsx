@@ -136,6 +136,7 @@ const VideoList: React.FC = () => {
                                 title={selectedVideo.title}
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
+                                loading='lazy'
                             ></iframe>
                             <ContainerDD>
                                 <ModalDD>Descrição</ModalDD>
