@@ -1,94 +1,103 @@
 import React from 'react'
 import styled from 'styled-components'
 import { LinkedIn, Facebook, Instagram } from '../SocialIcons'
+import logo from './img/leadster.gif'
+import Image from 'next/image'
+import LegalText from '../LegalText'
 
 export default function Footer() {
     return (
         <FooterContainer>
+            <ImageContainer>
+                <Image src={logo} alt={'Leadster'} width={270} height={62}/>
+                <Paragraph>Transformando visitantes em clientes.</Paragraph>
+            </ImageContainer>
+            <ColumnContainer>
 
-            <ColumnFooter>
-                <FooterHeading>Links Principais</FooterHeading>
-                <UlFooter>
+                <ColumnFooter>
+                    <FooterHeading>Links Principais</FooterHeading>
+                    <UlFooter>
 
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Home</FooterLink>
-                    </LiFooter>
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Ferramenta</FooterLink>
-                    </LiFooter>
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Preços</FooterLink>
-                    </LiFooter>
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Contato</FooterLink>
-                    </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Home</FooterLink>
+                        </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Ferramenta</FooterLink>
+                        </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Preços</FooterLink>
+                        </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Contato</FooterLink>
+                        </LiFooter>
 
-                </UlFooter>
-            </ColumnFooter>
+                    </UlFooter>
+                </ColumnFooter>
 
-            <ColumnFooter>
-                <FooterHeading>Cases</FooterHeading>
-                <UlFooter>
+                <ColumnFooter>
+                    <FooterHeading>Cases</FooterHeading>
+                    <UlFooter>
 
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Geração de Leads B2B</FooterLink>
-                    </LiFooter>
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Geração de Leads em Software</FooterLink>
-                    </LiFooter>
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Geração de Leads em Imobiliária</FooterLink>
-                    </LiFooter>
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Cases de Sucesso</FooterLink>
-                    </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Geração de Leads B2B</FooterLink>
+                        </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Geração de Leads em Software</FooterLink>
+                        </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Geração de Leads em Imobiliária</FooterLink>
+                        </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Cases de Sucesso</FooterLink>
+                        </LiFooter>
 
-                </UlFooter>
-            </ColumnFooter>
+                    </UlFooter>
+                </ColumnFooter>
 
-            <ColumnFooter>
-                <FooterHeading>Materiais</FooterHeading>
-                <UlFooter>
+                <ColumnFooter>
+                    <FooterHeading>Materiais</FooterHeading>
+                    <UlFooter>
 
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Blog</FooterLink>
-                    </LiFooter>
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Parceria com Agências</FooterLink>
-                    </LiFooter>
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Guia Definitivo do Marketing</FooterLink>
-                    </LiFooter>
-                    <LiFooter>
-                        <FooterLink href='#' rel='noreferrer'>Materiais Gratuitos</FooterLink>
-                    </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Blog</FooterLink>
+                        </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Parceria com Agências</FooterLink>
+                        </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Guia Definitivo do Marketing</FooterLink>
+                        </LiFooter>
+                        <LiFooter>
+                            <FooterLink href='#' rel='noreferrer'>Materiais Gratuitos</FooterLink>
+                        </LiFooter>
 
-                </UlFooter>
-            </ColumnFooter>
+                    </UlFooter>
+                </ColumnFooter>
 
-            <ColumnFooter>
-                <FooterHeading>Siga a Leadster</FooterHeading>
-
-                <ContainerSocial>
-                    <FooterSocialLink><LinkedIn/></FooterSocialLink>
-                    <FooterSocialLink><Facebook/></FooterSocialLink>
-                    <FooterSocialLink><Instagram/></FooterSocialLink>
-                </ContainerSocial>
-
-                <ContainerContact>
+                <ColumnFooter>
+                    <FooterHeading>Siga a Leadster</FooterHeading>
 
                     <ContainerSocial>
-                        <Strong>E-mail: </Strong><FooterLink href="mailto:contato@leadster.com.br">contato@leadster.com.br</FooterLink>
+                        <FooterSocialLink><LinkedIn /></FooterSocialLink>
+                        <FooterSocialLink><Facebook /></FooterSocialLink>
+                        <FooterSocialLink><Instagram /></FooterSocialLink>
                     </ContainerSocial>
 
-                    <ContainerSocial>
-                        <Strong>Telefone: </Strong><FooterLink href="tel:+554298828-9851">(42) 98828-9851</FooterLink>
-                    </ContainerSocial>
-                    
-                </ContainerContact>
+                    <ContainerContact>
 
-            </ColumnFooter>
+                        <ContainerSocial>
+                            <Strong>E-mail: </Strong><FooterLink href="mailto:contato@leadster.com.br">contato@leadster.com.br</FooterLink>
+                        </ContainerSocial>
 
+                        <ContainerSocial>
+                            <Strong>Telefone: </Strong><FooterLink href="tel:+554298828-9851">(42) 98828-9851</FooterLink>
+                        </ContainerSocial>
+
+                    </ContainerContact>
+
+                </ColumnFooter>
+            </ColumnContainer>
+            <LegalText/>
         </FooterContainer>
     )
 }
@@ -98,13 +107,10 @@ const FooterContainer = styled.footer`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
-    padding: 2rem 1rem;
+    align-items: center;
+    padding: 2rem 1rem 0 1rem;
     gap: 4rem;
 
-    @media (min-width: 768px){
-        flex-direction: row;
-    }
 `
 
 const ColumnFooter = styled.div`
@@ -115,6 +121,17 @@ const ColumnFooter = styled.div`
     gap: 1.1rem;
 
     text-align: left;
+`
+const ColumnContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 4rem;
+
+    @media (min-width: 768px){
+        flex-direction: row;
+    }
 `
 const FooterHeading = styled.h4`
     font-size: 1.2rem;
@@ -138,8 +155,8 @@ const FooterLink = styled.a`
     &:hover {
         color: #007dff;
     }
-` 
-const FooterSocialLink = styled.a `
+`
+const FooterSocialLink = styled.a`
     width: 46px;
     height: 46px;
     border-radius: 50%;
@@ -181,4 +198,17 @@ const ContainerContact = styled.div`
     justify-content: center;
     align-items: start;
     margin-top: 15px;
+`
+const Paragraph = styled.p`
+    font-weight: 500;
+    font-size: .9rem;
+    text-align: center;
+    color: #677294;
+`
+const ImageContainer = styled.div`
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `

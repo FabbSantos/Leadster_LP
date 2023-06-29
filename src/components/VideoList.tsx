@@ -91,8 +91,9 @@ const VideoList: React.FC = () => {
                         {tag}
                     </TagButton>
                 ))}
-                {/* <SortDrop></SortDrop> */}
+
                 <SelectContainer>
+                    <ParagraphSelect> Ordenar por </ParagraphSelect>
                     <Select onChange={handleSortChange}>
                         <option value="Data de Publicação">Data de Publicação  ▼</option>
                         <option value="Data de Publicação2">Data de Publicação  ▲</option>
@@ -501,11 +502,17 @@ const Select = styled.select`
 const SelectContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 8px;
   align-items: center;
   justify-content: center;
 
   @media (min-width:768px){
-    margin-left: 40px;
+    margin-left: 4rem;
   }
+`
+const ParagraphSelect = styled.p`
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: left;
+    padding: .9rem 0rem;
+    transition: color .3s ease;
 `
