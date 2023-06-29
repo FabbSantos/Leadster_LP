@@ -107,7 +107,7 @@ const VideoList: React.FC = () => {
                         <VideoOverlay>
                             <Overlay></Overlay>
                             <Play />
-                            <img src={video.thumb} alt={video.title} loading='lazy'  width={380} height={192}/>
+                            <img src={video.thumb} alt={video.title} loading='lazy'  width={366} height={188}/>
                         </VideoOverlay>
                         <VideoHeading>{video.title}</VideoHeading>
                     </VideoContainer>
@@ -249,7 +249,7 @@ const TagButton = styled.button<ButtonProps>`
     }
 `
 
-const VideoHeading = styled.h4`
+const VideoHeading = styled.h3`
     font-weight: 700;
     font-size: 1rem;
     text-align: left;

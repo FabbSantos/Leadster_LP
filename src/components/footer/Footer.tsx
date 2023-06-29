@@ -78,9 +78,9 @@ export default function Footer() {
                     <FooterHeading>Siga a Leadster</FooterHeading>
 
                     <ContainerSocial>
-                        <FooterSocialLink href='#'><LinkedIn /></FooterSocialLink>
-                        <FooterSocialLink href='#'><Facebook /></FooterSocialLink>
-                        <FooterSocialLink href='#'><Instagram /></FooterSocialLink>
+                        <FooterSocialLink href='#' aria-label="LinkedIn"><LinkedIn /></FooterSocialLink>
+                        <FooterSocialLink href='#' aria-label="Facebook"><Facebook /></FooterSocialLink>
+                        <FooterSocialLink href='#' aria-label="Instagram"><Instagram /></FooterSocialLink>
                     </ContainerSocial>
 
                     <ContainerContact>
