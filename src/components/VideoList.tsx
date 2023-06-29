@@ -107,7 +107,7 @@ const VideoList: React.FC = () => {
                         <VideoOverlay>
                             <Overlay></Overlay>
                             <Play />
-                            <img src={video.thumb} alt={video.title} loading='lazy'  width={366} height={188}/>
+                            <img src={video.thumb} alt={video.title} loading='lazy'  width={336} height={188}/>
                         </VideoOverlay>
                         <VideoHeading>{video.title}</VideoHeading>
                     </VideoContainer>
