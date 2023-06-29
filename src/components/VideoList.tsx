@@ -206,14 +206,18 @@ const SectionVideos = styled.section`
     border-top: 1px solid #c8d4dd;
     position: relative;
     display: flex;
-    max-width: 70%;
+
     margin: 0 auto;
     flex-direction: row;
-    padding: 6rem 2rem 2rem 2rem;
+  padding: 5%;
     margin-bottom: 8rem;
     gap: 10px;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    @media (min-width:768px){
+    max-width: 70%;
+      padding: 6rem 2rem 2rem 2rem;
+    }
 `
 const TagContainer = styled.div`
     display: flex;

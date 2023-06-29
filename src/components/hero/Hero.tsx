@@ -5,7 +5,7 @@ import styled from 'styled-components'
 export default function Hero() {
   return (
     <section>
-        <Header/>
+      <Header />
       <main>
         <SectionHero>
 
@@ -14,7 +14,7 @@ export default function Hero() {
           </HeadingWeb>
 
           <HeadingOne>
-            Menos Conversinha,<br/>
+            Menos Conversinha,<br />
             <HeadingSpan>Mais Conversão</HeadingSpan>
           </HeadingOne>
 
@@ -42,21 +42,29 @@ const SectionHero = styled.section`
   text-align: center;
 `
 
-const HeadingOne = styled.h1 ` 
+const HeadingOne = styled.h1` 
   color: #2c3e50;
   font-size: 3rem;
   font-weight: 500;
+
+  font-size: 2rem;
+  @media (min-width:768px){
+    font-size: 5.5rem;
+  }
   
   &::after {
     content: "";
     display: inline-block;
     border-bottom: 2px solid #c8d4dd;
-    width: 115%;
+    width: 100%;
     transform: translate(-5%, -30px);
+    @media (min-width:768px){
+      width: 115%;
+    }
   }
 
 `
-const  HeadingSpan = styled.span `
+const HeadingSpan = styled.span`
   background: rgb(31,118,240);
   background: -moz-linear-gradient(-45deg, rgba(31,118,240,1) 0%, rgba(44,131,251,1) 100%);
   background: -webkit-linear-gradient(-45deg, rgba(31,118,240,1) 0%, rgba(44,131,251,1) 100%);
@@ -67,21 +75,31 @@ const  HeadingSpan = styled.span `
 
   position: relative;
   font-weight: 700;
-  font-size: 5.5rem;
+  font-size: 2rem;
+  @media (min-width:768px){
+      font-size: 5.5rem;
+  }
 
   &::after {
     content: "";
     display: inline-block;
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
     background: url("/asset-header.png") no-repeat;
     background-size: contain;
-    transform: translateY(15px) translateX(-30px);
+    transform: translateY(1px) translateX(-12px);
+
+
+    @media (min-width:768px){
+      width: 50px;
+      height: 50px;
+      transform: translateY(15px) translateX(-30px);
+    }
   }
 `
 
-const HeadingWeb = styled.h2 `
+const HeadingWeb = styled.h2`
   font-size: 1rem;
   color: #007eff;
   border: 3px solid #007eff;
@@ -89,9 +107,10 @@ const HeadingWeb = styled.h2 `
   border-bottom-left-radius: 3px;
   text-transform: uppercase;
   padding: 6px 20px;
+  
 `
 
-const Subtitle = styled.h3 `
+const Subtitle = styled.h3`
   font-size: 1rem;
   font-weight: 500;
   color: #000;
