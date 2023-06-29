@@ -16,6 +16,9 @@ type Video = {
 type ButtonProps = {
     active: boolean
 }
+type PaginationNumberProps = {
+    active: boolean
+}
 
 // Definir o número de vídeos por página
 const videosPerPage = 9;
@@ -113,7 +116,7 @@ const VideoList: React.FC = () => {
                         <PaginationNumber
                             key={number}
                             onClick={() => setPage(number)}
-                            disabled={page === number}
+                            active={page === number}
                         >
                             {number}
                         </PaginationNumber>
@@ -344,19 +347,18 @@ const ContainerDD = styled.div`
     margin: 0 auto;
     width: 95%;
 `
-const PaginationNumber = styled.button`
+const PaginationNumber = styled.button<PaginationNumberProps>`
     background: none;
     outline: none;
-    color: #2c3e50;
+    color: ${(props) => (props.active ? '#007dff' : '#2c3e50')};
     border: none;
     font-size: 1.3rem;
     padding: 5px;
     cursor: pointer;
     transition: color .3s ease;
 
-    &:hover, 
-    &:focus,
-    &:active{
+    &:hover,
+    &:focus{
         color: #007dff;
     }
 `
