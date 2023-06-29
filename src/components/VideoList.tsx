@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import videosData from '../videos.json';
 import { Play } from './Play';
-import { title } from 'process';
 import { Download } from './Download';
 
 // Definir o tipo para os vídeos
@@ -10,123 +9,174 @@ type Video = {
     id: string;
     thumb: string;
     title: string;
+    tag: string
     description: string;
+    data: string
 };
 
 // Definir o número de vídeos por página
 const videosPerPage = 9;
 
-// Array de números de 1 a 4
-const pageNumbers = [1, 2, 3, 4];
+
 
 const VideoList: React.FC = () => {
     const [videos, setVideos] = useState<Video[]>([]);
     const [page, setPage] = useState(1);
+    const tags = ["Agencias", "Chatbot", "Marketing Digital", "Geração de Leads", "Midia Paga"];
     const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+    const [selectedTag, setSelectedTag] = useState("");
 
     useEffect(() => {
         setVideos(videosData);
     }, []);
 
+    // Função para comparar as datas
+    const compareDates = (videoA: Video, videoB: Video) => {
+        const dateA = new Date(videoA.data).valueOf();
+        const dateB = new Date(videoB.data).valueOf();
+
+        return dateB - dateA;  // sort by descending order (newest first)
+    }
+    const handleSortChange = (event: { target: { value: any; }; }) => {
+        const sortType = event.target.value;
+
+        if (sortType === 'Data de Publicação') {
+            setVideos(prevVideos => [...prevVideos].sort(compareDates));
+        }
+    }
+    const filteredVideos = selectedTag === "" ? videos : videos.filter(video => video.tag === selectedTag);
+    const pageCount = Math.ceil(filteredVideos.length / videosPerPage);
+    const pageNumbers = [...Array(pageCount).keys()].map(i => i + 1);
+
     // Função para obter os vídeos da página atual
     function getCurrentPageVideos() {
         const startIndex = (page - 1) * videosPerPage;
-        return videos.slice(startIndex, startIndex + videosPerPage);
+        return filteredVideos.slice(startIndex, startIndex + videosPerPage);
+
+        // return sortedVideos = sortedVideos.sort(compareDates);
     }
+
+    function handleTagClick(tag: string) {
+        setSelectedTag(currentTag => currentTag === tag ? "" : tag);
+    }
+
+
+
+
 
     // Renderização do componente
     return (
-        <SectionVideos>
-            {getCurrentPageVideos().map(video => (
-                <VideoContainer key={video.id} onClick={() => setSelectedVideo(video)}>
-                    <VideoOverlay>
-                        <Overlay></Overlay>
-                        <Play />
-                        <img src={video.thumb} alt={video.title} />
-                    </VideoOverlay>
-                    <VideoHeading>{video.title}</VideoHeading>
-                </VideoContainer>
-            ))}
-            <PaginationContainer>
-                {pageNumbers.map(number => (
-                    <PaginationNumber
-                        key={number}
-                        onClick={() => setPage(number)}
-                        disabled={page === number}
+        <>
+            <TagContainer>
+                {tags.map(tag => (
+                    <TagButton
+                        key={tag}
+                        onClick={() => handleTagClick(tag)}
                     >
-                        {number}
-                    </PaginationNumber>
+                        {tag}
+                    </TagButton>
                 ))}
-            </PaginationContainer>
-            {selectedVideo && (
-                <Modal>
-                    <ModalContent>
-                        <Close onClick={() => setSelectedVideo(null)}>&times;</Close>
-                        <ModalHeading><ModalSpan>Webinar:</ModalSpan>{selectedVideo.title}</ModalHeading>
-                        <iframe
-                            width="100%"
-                            height="340"
-                            src={`https://www.youtube.com/embed/${selectedVideo.id}`}
-                            title={selectedVideo.title}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
-                        <ContainerDD>
-                            <ModalDD>Descrição</ModalDD>
-                            <Paragraph>{selectedVideo.description}</Paragraph>
-                        </ContainerDD>
+                {/* <SortDrop></SortDrop> */}
+                <select onChange={handleSortChange}>
+                    <option value="">Select Sort Type</option>
+                    <option value="Newest">Newest</option>
+        // Adicione mais opções conforme necessário
+                </select>
+            </TagContainer>
 
-                        <ContainerDD>
-                            <ModalDD>Downloads</ModalDD>
+            <SectionVideos>
+                {getCurrentPageVideos().map(video => (
+                    <VideoContainer key={video.id} onClick={() => setSelectedVideo(video)}>
+                        <VideoOverlay>
+                            <Overlay></Overlay>
+                            <Play />
+                            <img src={video.thumb} alt={video.title} loading='lazy' />
+                        </VideoOverlay>
+                        <VideoHeading>{video.title}</VideoHeading>
+                    </VideoContainer>
+                ))}
+                <PaginationContainer>
+                    {pageNumbers.map(number => (
+                        <PaginationNumber
+                            key={number}
+                            onClick={() => setPage(number)}
+                            disabled={page === number}
+                        >
+                            {number}
+                        </PaginationNumber>
+                    ))}
+                </PaginationContainer>
 
-                            <ContainerAllButtons>
+                {selectedVideo && (
+                    <Modal>
+                        <ModalContent>
+                            <Close onClick={() => setSelectedVideo(null)}>&times;</Close>
+                            <ModalHeading><ModalSpan>Webinar:</ModalSpan>{selectedVideo.title}</ModalHeading>
+                            <iframe
+                                width="100%"
+                                height="340"
+                                src={`https://www.youtube.com/embed/${selectedVideo.id}`}
+                                title={selectedVideo.title}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                            <ContainerDD>
+                                <ModalDD>Descrição</ModalDD>
+                                <Paragraph>{selectedVideo.description}</Paragraph>
+                            </ContainerDD>
 
-                                <ContainerButtonDownload>
-                                    <ContainerDownloadSpread> <Download /> </ContainerDownloadSpread>
-                                    <SpreadsheetButton href="#" download>Spreadsheet.xls</SpreadsheetButton>
-                                </ContainerButtonDownload>
+                            <ContainerDD>
+                                <ModalDD>Downloads</ModalDD>
 
-                                <ContainerButtonDownload>
-                                    <ContainerDownloadDocx> <Download /> </ContainerDownloadDocx>
-                                    <DocxButton href="#" download>Document.doc</DocxButton>
-                                </ContainerButtonDownload>
+                                <ContainerAllButtons>
 
-                                <ContainerButtonDownload>
-                                    <ContainerDownloadPpt> <Download /> </ContainerDownloadPpt>
-                                    <PptButton href="#" download>Presentation.ppt</PptButton>
-                                </ContainerButtonDownload>
+                                    <ContainerButtonDownload>
+                                        <ContainerDownloadSpread> <Download /> </ContainerDownloadSpread>
+                                        <SpreadsheetButton href="#" download>Spreadsheet.xls</SpreadsheetButton>
+                                    </ContainerButtonDownload>
 
-                            </ContainerAllButtons>
+                                    <ContainerButtonDownload>
+                                        <ContainerDownloadDocx> <Download /> </ContainerDownloadDocx>
+                                        <DocxButton href="#" download>Document.doc</DocxButton>
+                                    </ContainerButtonDownload>
+
+                                    <ContainerButtonDownload>
+                                        <ContainerDownloadPpt> <Download /> </ContainerDownloadPpt>
+                                        <PptButton href="#" download>Presentation.ppt</PptButton>
+                                    </ContainerButtonDownload>
+
+                                </ContainerAllButtons>
 
 
-                        </ContainerDD>
-                    </ModalContent>
-                    <ContainerAllButtons2>
+                            </ContainerDD>
+                        </ModalContent>
+                        <ContainerAllButtons2>
 
-                        <ContainerButtonDownload>
-                            <ContainerDownloadSpread> <Download /> </ContainerDownloadSpread>
-                            <SpreadsheetButton href="#" download>Spreadsheet.xls</SpreadsheetButton>
-                        </ContainerButtonDownload>
+                            <ContainerButtonDownload>
+                                <ContainerDownloadSpread> <Download /> </ContainerDownloadSpread>
+                                <SpreadsheetButton href="#" download>Spreadsheet.xls</SpreadsheetButton>
+                            </ContainerButtonDownload>
 
-                        <ContainerButtonDownload>
-                            <ContainerDownloadDocx> <Download /> </ContainerDownloadDocx>
-                            <DocxButton href="#" download>Document.doc</DocxButton>
-                        </ContainerButtonDownload>
+                            <ContainerButtonDownload>
+                                <ContainerDownloadDocx> <Download /> </ContainerDownloadDocx>
+                                <DocxButton href="#" download>Document.doc</DocxButton>
+                            </ContainerButtonDownload>
 
-                        <ContainerButtonDownload>
-                            <ContainerDownloadPpt> <Download /> </ContainerDownloadPpt>
-                            <PptButton href="#" download>Presentation.ppt</PptButton>
-                        </ContainerButtonDownload>
+                            <ContainerButtonDownload>
+                                <ContainerDownloadPpt> <Download /> </ContainerDownloadPpt>
+                                <PptButton href="#" download>Presentation.ppt</PptButton>
+                            </ContainerButtonDownload>
 
-                        <ContainerButtonDownload>
-                            <ContainerDownloadZip> <Download /> </ContainerDownloadZip>
-                            <ZipButton href="#" download>Folder.zip</ZipButton>
-                        </ContainerButtonDownload>
+                            <ContainerButtonDownload>
+                                <ContainerDownloadZip> <Download /> </ContainerDownloadZip>
+                                <ZipButton href="#" download>Folder.zip</ZipButton>
+                            </ContainerButtonDownload>
 
-                    </ContainerAllButtons2>
-                </Modal>
-            )}
-        </SectionVideos>
+                        </ContainerAllButtons2>
+                    </Modal>
+                )}
+            </SectionVideos>
+        </>
     );
 
 };
@@ -135,15 +185,48 @@ export default VideoList;
 
 
 const SectionVideos = styled.section`
+    border-bottom: 1px solid #c8d4dd;
+    border-top: 1px solid #c8d4dd;
     position: relative;
     display: flex;
     max-width: 70%;
     margin: 0 auto;
     flex-direction: row;
-    padding: 6rem 2rem;
+    padding: 6rem 2rem 2rem 2rem;
+    margin-bottom: 8rem;
     gap: 10px;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
+`
+const TagContainer = styled.div`
+    display: flex;
+    margin: 3% 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+`
+const TagButton = styled.button`
+    outline: none;
+    background: none;
+    border: 1px solid #000;
+    border-radius: 30px;
+    font-family: inherit;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all .3s ease;
+
+    &:hover{
+        border-color: #007dff;
+        color: #007dff;
+    }
+    &:focus {
+        color: #fff;
+        background-color: #007dff;
+        border-color: #007dff;
+    }
 `
 
 const VideoHeading = styled.h4`
@@ -263,8 +346,7 @@ const PaginationNumber = styled.button`
 
     &:hover, 
     &:focus,
-    &:active, 
-    &:visited {
+    &:active{
         color: #007dff;
     }
 `
@@ -275,7 +357,7 @@ const PaginationContainer = styled.div`
     justify-content: center;
     align-items: center;
     position: absolute;
-    bottom: 3%;
+    bottom: -8%;
     left: 50%;
     transform: translateX(-50%);
 `
