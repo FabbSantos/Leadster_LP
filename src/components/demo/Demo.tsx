@@ -47,11 +47,7 @@ export default function Demo() {
             <Button>
               Ver demonstração
             </Button>
-
-            <ImageContainer>
-              <Image src={rd} alt={'Top 10 Apps mais usados'} width={205} height={73} loading='lazy' />
-            </ImageContainer>
-
+            <Image src={rd} alt={'Top 10 Apps mais usados'} width={205} height={73} loading='lazy' />
           </ContainerButtonImg>
           {/* Fim Container botão e image*/}
 
@@ -98,13 +94,16 @@ const SectionDemo = styled.section`
 
 const ContainerGeral = styled.div`
   color: #2c3e50;
-  width: 35%;
+  width: 95%;
   gap: 1.2rem;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: start;
+  @media (min-width:768px){
+    width: 35%;
+  }
 `
 const ContainerText = styled.div`
   border-bottom: 1px solid #c8d4dd;
@@ -118,12 +117,23 @@ const ContainerText = styled.div`
   align-items: start;
 `
 const ImageContainer = styled.div`
-  height: auto;
-  width: auto;
+  &>img {
+    width: 416px;
+    height: 389px;
+      @media (min-width:768px){
+        height: 651px;
+        width: 700px;
+      }
+  }
+
+
 `
 const TitleDemo = styled.h2`
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 500;
+  @media (min-width:768px){
+    font-size: 3rem;
+  }
 `
 const TitleStrong = styled.strong`
   font-weight: 700;
@@ -144,24 +154,41 @@ const Strong = styled.strong`
 const DivContainerGeral = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 1rem;
-  justify-content: start;
-  align-items: start;
+  justify-content: center;
+  align-items: center;
+  @media (min-width:768px){
+    align-items: start;
+    justify-content: start;
+  }
 `
 const ContainerButtonImg = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 2rem;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
+
+  @media (min-width:768px){
+      flex-direction: row;
+      justify-content: start;
+  }
+  
 `
 const ContainerRating = styled.div`
   display: flex;
   min-width: min-content;
-  flex-direction: row;
+  flex-direction: column;
   gap: 8px;
   justify-content: start;
+  padding: 2rem 0;
   align-items: center;
+  @media (min-width:768px){
+    padding: 0 0;
+    flex-direction: row;
+    justify-content: start;
+}
 `
 const CreditCard = styled.div`
   display: flex;

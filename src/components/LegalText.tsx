@@ -14,13 +14,15 @@ export default function LegalText() {
 const LegalContainer = styled.div`
     display: flex;
     width: 100%;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 1rem;
     border-top: 1px solid #c8d4dd;
     justify-content: space-between;
     padding: 5%;
 
     @media(min-width:768px) {
         padding: 2% 15%;
+        flex-direction: row;
     }
 `
 const Copyright = styled.p`
