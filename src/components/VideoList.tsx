@@ -13,6 +13,9 @@ type Video = {
     description: string;
     data: string
 };
+type ButtonProps = {
+    active: boolean
+}
 
 // Definir o número de vídeos por página
 const videosPerPage = 9;
@@ -25,6 +28,7 @@ const VideoList: React.FC = () => {
     const tags = ["Agencias", "Chatbot", "Marketing Digital", "Geração de Leads", "Midia Paga"];
     const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
     const [selectedTag, setSelectedTag] = useState("");
+    const [isButtonClicked, setButtonClicked] = useState(false);
 
     useEffect(() => {
         setVideos(videosData);
@@ -37,11 +41,20 @@ const VideoList: React.FC = () => {
 
         return dateB - dateA;  // sort by descending order (newest first)
     }
+    const compareDates2 = (videoA: Video, videoB: Video) => {
+        const dateA = new Date(videoA.data).valueOf();
+        const dateB = new Date(videoB.data).valueOf();
+
+        return dateA - dateB ;  // sort by descending order (newest first)
+    }
     const handleSortChange = (event: { target: { value: any; }; }) => {
         const sortType = event.target.value;
 
         if (sortType === 'Data de Publicação') {
             setVideos(prevVideos => [...prevVideos].sort(compareDates));
+        }
+        if (sortType === 'Data de Publicação2') {
+            setVideos(prevVideos => [...prevVideos].sort(compareDates2));
         }
     }
     const filteredVideos = selectedTag === "" ? videos : videos.filter(video => video.tag === selectedTag);
@@ -58,10 +71,8 @@ const VideoList: React.FC = () => {
 
     function handleTagClick(tag: string) {
         setSelectedTag(currentTag => currentTag === tag ? "" : tag);
+        setButtonClicked(currentState => !currentState);
     }
-
-
-
 
 
     // Renderização do componente
@@ -72,16 +83,18 @@ const VideoList: React.FC = () => {
                     <TagButton
                         key={tag}
                         onClick={() => handleTagClick(tag)}
+                        active={selectedTag === tag}
                     >
                         {tag}
                     </TagButton>
                 ))}
                 {/* <SortDrop></SortDrop> */}
-                <select onChange={handleSortChange}>
-                    <option value="">Select Sort Type</option>
-                    <option value="Newest">Newest</option>
-        // Adicione mais opções conforme necessário
-                </select>
+                <SelectContainer>
+                    <Select onChange={handleSortChange}>
+                        <option value="Data de Publicação">Data de Publicação  ▼</option>
+                        <option value="Data de Publicação2">Data de Publicação  ▲</option>
+                    </Select>
+                </SelectContainer>
             </TagContainer>
 
             <SectionVideos>
@@ -207,12 +220,14 @@ const TagContainer = styled.div`
     justify-content: center;
     align-items: center;
 `
-const TagButton = styled.button`
+const TagButton = styled.button<ButtonProps>`
     outline: none;
     background: none;
-    border: 1px solid #000;
+    border: ${(props) => (props.active ? 'none' : '1px solid #000')};
+    background-color: ${(props) => (props.active ? '#007dff' : 'transparent')};
     border-radius: 30px;
     font-family: inherit;
+    color: ${(props) => (props.active ? '#fff' : '#000')};
     padding: 5px 10px;
     font-size: 1rem;
     cursor: pointer;
@@ -220,12 +235,7 @@ const TagButton = styled.button`
 
     &:hover{
         border-color: #007dff;
-        color: #007dff;
-    }
-    &:focus {
-        color: #fff;
-        background-color: #007dff;
-        border-color: #007dff;
+        color: ${(props) => (props.active ? '#fff' : '#007dff')}
     }
 `
 
@@ -464,4 +474,36 @@ const ContainerAllButtons2 = styled.div`
     align-items: start;
     gap: .1rem;
     padding: 1rem;
+`
+const Select = styled.select`
+  width: min-content;
+  height: 40px;
+  margin: 20px;
+  background: white;
+  color: black;
+  padding: 5px 20px;
+  font-size: .8rem;
+  font-family: inherit;
+  font-weight: 600;
+  border: 1px solid #000;
+  border-radius: 10px;
+  -webkit-appearance: none !important;
+
+  option {
+    color: black;
+    background: white;
+    display: flex;
+    white-space: pre;
+  }
+`
+const SelectContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width:768px){
+    margin-left: 40px;
+  }
 `
