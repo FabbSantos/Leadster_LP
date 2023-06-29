@@ -107,7 +107,7 @@ const VideoList: React.FC = () => {
                         <VideoOverlay>
                             <Overlay></Overlay>
                             <Play />
-                            <img src={video.thumb} alt={video.title} loading='lazy'  width={336} height={188}/>
+                            <ImageThumb src={video.thumb} alt={video.title} loading='lazy'  width={336} height={188}/>
                         </VideoOverlay>
                         <VideoHeading>{video.title}</VideoHeading>
                     </VideoContainer>
@@ -256,6 +256,10 @@ const VideoHeading = styled.h3`
     text-align: left;
     padding: .9rem 1.4rem;
     transition: color .3s ease;
+`
+const ImageThumb = styled.img`
+    max-width: 100%;
+    max-height: 100%;
 `
 const Paragraph = styled.p`
     font-weight: 500;
