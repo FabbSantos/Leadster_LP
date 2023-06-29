@@ -110,7 +110,7 @@ const HeadingWeb = styled.h2`
   
 `
 
-const Subtitle = styled.h3`
+const Subtitle = styled.h2`
   font-size: 1rem;
   font-weight: 500;
   color: #000;
